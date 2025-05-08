@@ -92,46 +92,16 @@ export default function Home() {
               className={`text-base font-medium ${
                 index === vibe ? "text-violet-400" : "text-slate-400"
               }`}
+              style={{
+                transform: `translateX(${
+                  index === 0 ? "0" : index === 3 ? "-100%" : "-50%"
+                })`,
+              }}
             >
               {label}
             </span>
           ))}
         </div>
-      </div>
-
-      <div className="bg-slate-900 rounded-xl p-4 md:p-8 shadow-inner border border-slate-700/50 max-w-3xl w-full">
-        <div className="flex flex-col items-center gap-4 md:gap-6 text-xl md:text-4xl text-white text-center">
-          <div className="flex items-center gap-2 md:gap-4 flex-wrap justify-center w-full">
-            <span>Create a</span>
-            <motion.div
-              key={appType}
-              className="bg-slate-800 px-4 md:px-6 py-2 md:py-3 rounded-lg border border-violet-500/20 w-[180px] md:w-auto md:min-w-[180px] max-w-full"
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="text-violet-400 font-semibold break-words">
-                {appType || "\u00A0"}
-              </span>
-            </motion.div>
-            <span>app</span>
-          </div>
-          <div className="flex items-center gap-2 md:gap-4 flex-wrap justify-center w-full">
-            <span>that</span>
-            <motion.div
-              key={purpose}
-              className="bg-slate-800 px-4 md:px-6 py-2 md:py-3 rounded-lg border border-violet-500/20 w-full md:w-auto md:min-w-[300px]"
-              animate={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="text-violet-400 font-semibold break-words">
-                {purpose || "\u00A0"}
-              </span>
-            </motion.div>
-          </div>
-        </div>
-        {error && <p className="text-red-400 text-center mt-4">{error}</p>}
       </div>
 
       <div className="mt-8">
@@ -148,6 +118,43 @@ export default function Home() {
           </div>
         </button>
       </div>
+
+      {(appType || purpose) && (
+        <div className="bg-slate-900 rounded-xl p-4 md:p-8 shadow-inner border border-slate-700/50 max-w-3xl w-full">
+          <div className="flex flex-col items-center gap-4 md:gap-6 text-xl md:text-4xl text-white text-center">
+            <div className="flex items-center gap-2 md:gap-4 flex-wrap justify-center w-full">
+              <span>Create a</span>
+              <motion.div
+                key={appType}
+                className="bg-slate-800 px-4 md:px-6 py-2 md:py-3 rounded-lg border border-violet-500/20 w-[180px] md:w-auto md:min-w-[180px] max-w-full"
+                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.2 }}
+              >
+                <span className="text-violet-400 font-semibold break-words">
+                  {appType || "\u00A0"}
+                </span>
+              </motion.div>
+              <span>app</span>
+            </div>
+            <div className="flex items-center gap-2 md:gap-4 flex-wrap justify-center w-full">
+              <span>that</span>
+              <motion.div
+                key={purpose}
+                className="bg-slate-800 px-4 md:px-6 py-2 md:py-3 rounded-lg border border-violet-500/20 w-full md:w-auto md:min-w-[300px]"
+                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.2 }}
+              >
+                <span className="text-violet-400 font-semibold break-words">
+                  {purpose || "\u00A0"}
+                </span>
+              </motion.div>
+            </div>
+          </div>
+          {error && <p className="text-red-400 text-center mt-4">{error}</p>}
+        </div>
+      )}
     </div>
   );
 }
