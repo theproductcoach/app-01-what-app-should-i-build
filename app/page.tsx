@@ -74,7 +74,7 @@ export default function Home() {
 
       <div className="w-full max-w-3xl flex flex-col items-center gap-4">
         <p className="text-white font-bold text-xl mb-2">{vibeLabels[vibe]}</p>
-        <div className="w-full max-w-lg flex items-center gap-4 px-4">
+        <div className="w-full max-w-[280px] md:max-w-lg flex items-center gap-4 px-2 md:px-4">
           <input
             type="range"
             min="0"
@@ -85,17 +85,18 @@ export default function Home() {
             step="1"
           />
         </div>
-        <div className="w-full max-w-lg flex justify-between px-4">
+        <div className="w-full max-w-[280px] md:max-w-lg flex justify-between px-2 md:px-4 relative">
           {vibeLabels.map((label, index) => (
             <span
               key={label}
-              className={`text-base font-medium ${
+              className={`text-sm md:text-base font-medium ${
                 index === vibe ? "text-violet-400" : "text-slate-400"
               }`}
               style={{
-                transform: `translateX(${
-                  index === 0 ? "0" : index === 3 ? "-100%" : "-50%"
-                })`,
+                position: "absolute",
+                left: `${(index * 100) / 3}%`,
+                transform: `translateX(-50%)`,
+                whiteSpace: "nowrap",
               }}
             >
               {label}
